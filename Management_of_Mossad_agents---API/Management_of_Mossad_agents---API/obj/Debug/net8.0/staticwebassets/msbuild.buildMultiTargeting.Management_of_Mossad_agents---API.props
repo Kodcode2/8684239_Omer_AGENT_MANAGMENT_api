@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Management_of_Mossad_agents---API.props" />
+</Project>

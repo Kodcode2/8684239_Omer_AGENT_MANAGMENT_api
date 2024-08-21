@@ -1,0 +1,6 @@
+@Management_of_Mossad_agents___API_HostAddress = http://localhost:5288
+
+GET {{Management_of_Mossad_agents___API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
