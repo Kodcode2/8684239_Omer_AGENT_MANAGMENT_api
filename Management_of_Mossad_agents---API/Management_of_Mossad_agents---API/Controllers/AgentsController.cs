@@ -1,6 +1,7 @@
 ﻿using Management_of_Mossad_agents___API.DAL;
 using Management_of_Mossad_agents___API.Enums;
 using Management_of_Mossad_agents___API.Models;
+using Management_of_Mossad_agents___API.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -30,6 +31,11 @@ namespace Management_of_Mossad_agents___API.Controllers
             agent.status = AgentStatus.Dormant;
             await _context.Agents.AddAsync(agent);
             await _context.SaveChangesAsync();
+
+            //הפנייה לבדיקת יצירת משימה
+            List<Target> targets = _context.Targets.Include(t => t.location).Where(t => t.status == TargetStatus.Live).ToList();
+            ProposalToMission.CheckByAgent(agent, targets);
+
             return StatusCode(
                 StatusCodes.Status201Created,
                 new { success = true, agentID = agent.id }
@@ -51,6 +57,11 @@ namespace Management_of_Mossad_agents___API.Controllers
             agent.location = location;
             _context.Update(agent);
             await _context.SaveChangesAsync();
+
+            //הפנייה לבדיקת יצירת משימה
+            List<Target> targets = _context.Targets.Include(t => t.location).Where(t => t.status == TargetStatus.Live).ToList();
+            ProposalToMission.CheckByAgent(agent, targets);
+
             return Ok(new { agent });
         }
 
@@ -68,6 +79,35 @@ namespace Management_of_Mossad_agents___API.Controllers
                     agents = _context.Agents.Include(t => t.location)?.ToList()
                 }
             );
+        }
+
+
+
+        //הזזת הסוכן לכיוון מסוים
+        [HttpPut("{id}/move")]
+        [Produces("application/json")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<IActionResult> MoveAgentByIdAsync(int id, [FromBody] Dictionary<string, string> moveData)
+        {
+            Agent agent = await _context.Agents
+                                          .Include(a => a.location)
+                                          .FirstOrDefaultAsync(a => a.id == id);
+            if (agent == null)
+            {
+                return NotFound(new { success = false, message = "Agent not found" });
+            }
+            if (moveData.TryGetValue("direction", out string direction))
+            {
+                bool success = await PositionUpdater.UpdatePositionAgentAsync(agent, direction);
+                if (!success)
+                {
+                    return BadRequest(new { success = false, message = "Invalid direction" });
+                }
+                _context.Update(agent);
+                await _context.SaveChangesAsync();
+                return Ok(new { success = true, agent });
+            }
+            return BadRequest(new { success = false, message = "Direction not provided" });
         }
     }
 }

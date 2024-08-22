@@ -31,6 +31,11 @@ namespace Management_of_Mossad_agents___API.Controllers
             target.status = TargetStatus.Live;
             await _context.Targets.AddAsync(target);
             await _context.SaveChangesAsync();
+
+            //הפנייה לבדיקת יצירת משימה
+            List<Agent> agents = _context.Agents.Include(a => a.location).Where(a => a.status == AgentStatus.Dormant).ToList();
+            ProposalToMission.CheckByTarget(target, agents);
+
             return StatusCode(
                 StatusCodes.Status201Created,
                 new { success = true, targetID = target.id }
@@ -52,6 +57,11 @@ namespace Management_of_Mossad_agents___API.Controllers
             target.location = location;
             _context.Update(target);
             await _context.SaveChangesAsync();
+
+            //הפנייה לבדיקת יצירת משימה
+            List<Agent> agents = _context.Agents.Include(a => a.location).Where(a => a.status == AgentStatus.Dormant).ToList();
+            ProposalToMission.CheckByTarget(target, agents);
+
             return Ok(new { target });
         }
 
@@ -87,7 +97,7 @@ namespace Management_of_Mossad_agents___API.Controllers
             }
             if (moveData.TryGetValue("direction", out string direction))
             {
-                bool success = await PositionUpdater.UpdatePositionAsync(target, direction);
+                bool success = await PositionUpdater.UpdatePositionTargetAsync(target, direction);
                 if (!success)
                 {
                     return BadRequest(new { success = false, message = "Invalid direction" });

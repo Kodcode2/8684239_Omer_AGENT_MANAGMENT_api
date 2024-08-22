@@ -18,7 +18,9 @@ namespace Management_of_Mossad_agents___API.Services
             { "se", (1, 1) }   
         };
 
-        public static async Task<bool> UpdatePositionAsync(Target target, string direction)
+
+        //פונקציה עבור מטרה
+        public static async Task<bool> UpdatePositionTargetAsync(Target target, string direction)
         {
             if (DirectionUpdates.TryGetValue(direction, out (int dx, int dy) update))
             {
@@ -28,6 +30,20 @@ namespace Management_of_Mossad_agents___API.Services
             }
 
             return false; 
+        }
+
+
+        //פונקציה עבור סוכן
+        public static async Task<bool> UpdatePositionAgentAsync(Agent agent, string direction)
+        {
+            if (DirectionUpdates.TryGetValue(direction, out (int dx, int dy) update))
+            {
+                agent.location.X += update.dx;
+                agent.location.Y += update.dy;
+                return true;
+            }
+
+            return false;
         }
     }
 }
