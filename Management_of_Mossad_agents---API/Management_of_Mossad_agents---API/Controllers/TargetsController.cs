@@ -32,10 +32,6 @@ namespace Management_of_Mossad_agents___API.Controllers
             await _context.Targets.AddAsync(target);
             await _context.SaveChangesAsync();
 
-            //הפנייה לבדיקת יצירת משימה
-            List<Agent> agents = _context.Agents.Include(a => a.location).Where(a => a.status == AgentStatus.Dormant).ToList();
-            ProposalToMission.CheckByTarget(target, agents);
-
             return StatusCode(
                 StatusCodes.Status201Created,
                 new { success = true, targetID = target.id }
@@ -60,7 +56,12 @@ namespace Management_of_Mossad_agents___API.Controllers
 
             //הפנייה לבדיקת יצירת משימה
             List<Agent> agents = _context.Agents.Include(a => a.location).Where(a => a.status == AgentStatus.Dormant).ToList();
-            ProposalToMission.CheckByTarget(target, agents);
+            Mission mission = ProposalToMission.CheckByTarget(target, agents);
+            if (mission != null)
+            {
+                _context.Missions.Add(mission);
+                _context.SaveChanges();
+            }
 
             return Ok(new { target });
         }
@@ -104,6 +105,17 @@ namespace Management_of_Mossad_agents___API.Controllers
                 }
                 _context.Update(target);
                 await _context.SaveChangesAsync();
+
+                //הפנייה לבדיקת יצירת משימה
+                List<Agent> agents = _context.Agents.Include(a => a.location).Where(a => a.status == AgentStatus.Dormant).ToList();
+                Mission mission = ProposalToMission.CheckByTarget(target, agents);
+                if (mission != null) 
+                { 
+                    _context.Missions.Add(mission);
+                    _context.SaveChanges();
+                }
+
+
                 return Ok(new { success = true, target });
             }
             return BadRequest(new { success = false, message = "Direction not provided" });
