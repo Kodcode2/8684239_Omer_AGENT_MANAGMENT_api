@@ -7,6 +7,10 @@
       "RelativeMoniker": "D:0:0:{B36562AA-C88F-4591-A9D0-9D8A1A9371F3}|Management_of_Mossad_agents---API\\Management_of_Mossad_agents---API.csproj|solutionrelative:management_of_mossad_agents---api\\controllers\\targetscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{B36562AA-C88F-4591-A9D0-9D8A1A9371F3}|Management_of_Mossad_agents---API\\Management_of_Mossad_agents---API.csproj|c:\\idf many repositories\\management_of_mossad_agents---api\\management_of_mossad_agents---api\\management_of_mossad_agents---api\\services\\positionupdater.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B36562AA-C88F-4591-A9D0-9D8A1A9371F3}|Management_of_Mossad_agents---API\\Management_of_Mossad_agents---API.csproj|solutionrelative:management_of_mossad_agents---api\\services\\positionupdater.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{B36562AA-C88F-4591-A9D0-9D8A1A9371F3}|Management_of_Mossad_agents---API\\Management_of_Mossad_agents---API.csproj|c:\\idf many repositories\\management_of_mossad_agents---api\\management_of_mossad_agents---api\\management_of_mossad_agents---api\\models\\target.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B36562AA-C88F-4591-A9D0-9D8A1A9371F3}|Management_of_Mossad_agents---API\\Management_of_Mossad_agents---API.csproj|solutionrelative:management_of_mossad_agents---api\\models\\target.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -15,32 +19,12 @@
       "RelativeMoniker": "D:0:0:{B36562AA-C88F-4591-A9D0-9D8A1A9371F3}|Management_of_Mossad_agents---API\\Management_of_Mossad_agents---API.csproj|solutionrelative:management_of_mossad_agents---api\\controllers\\agentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B36562AA-C88F-4591-A9D0-9D8A1A9371F3}|Management_of_Mossad_agents---API\\Management_of_Mossad_agents---API.csproj|c:\\idf many repositories\\management_of_mossad_agents---api\\management_of_mossad_agents---api\\management_of_mossad_agents---api\\enums\\agentstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B36562AA-C88F-4591-A9D0-9D8A1A9371F3}|Management_of_Mossad_agents---API\\Management_of_Mossad_agents---API.csproj|solutionrelative:management_of_mossad_agents---api\\enums\\agentstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B36562AA-C88F-4591-A9D0-9D8A1A9371F3}|Management_of_Mossad_agents---API\\Management_of_Mossad_agents---API.csproj|c:\\idf many repositories\\management_of_mossad_agents---api\\management_of_mossad_agents---api\\management_of_mossad_agents---api\\enums\\targetstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B36562AA-C88F-4591-A9D0-9D8A1A9371F3}|Management_of_Mossad_agents---API\\Management_of_Mossad_agents---API.csproj|solutionrelative:management_of_mossad_agents---api\\enums\\targetstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B36562AA-C88F-4591-A9D0-9D8A1A9371F3}|Management_of_Mossad_agents---API\\Management_of_Mossad_agents---API.csproj|c:\\idf many repositories\\management_of_mossad_agents---api\\management_of_mossad_agents---api\\management_of_mossad_agents---api\\models\\mission.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B36562AA-C88F-4591-A9D0-9D8A1A9371F3}|Management_of_Mossad_agents---API\\Management_of_Mossad_agents---API.csproj|solutionrelative:management_of_mossad_agents---api\\models\\mission.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B36562AA-C88F-4591-A9D0-9D8A1A9371F3}|Management_of_Mossad_agents---API\\Management_of_Mossad_agents---API.csproj|c:\\idf many repositories\\management_of_mossad_agents---api\\management_of_mossad_agents---api\\management_of_mossad_agents---api\\dal\\managementofmossadagentsdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B36562AA-C88F-4591-A9D0-9D8A1A9371F3}|Management_of_Mossad_agents---API\\Management_of_Mossad_agents---API.csproj|solutionrelative:management_of_mossad_agents---api\\dal\\managementofmossadagentsdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B36562AA-C88F-4591-A9D0-9D8A1A9371F3}|Management_of_Mossad_agents---API\\Management_of_Mossad_agents---API.csproj|c:\\idf many repositories\\management_of_mossad_agents---api\\management_of_mossad_agents---api\\management_of_mossad_agents---api\\models\\location.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B36562AA-C88F-4591-A9D0-9D8A1A9371F3}|Management_of_Mossad_agents---API\\Management_of_Mossad_agents---API.csproj|solutionrelative:management_of_mossad_agents---api\\models\\location.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B36562AA-C88F-4591-A9D0-9D8A1A9371F3}|Management_of_Mossad_agents---API\\Management_of_Mossad_agents---API.csproj|c:\\idf many repositories\\management_of_mossad_agents---api\\management_of_mossad_agents---api\\management_of_mossad_agents---api\\models\\agent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B36562AA-C88F-4591-A9D0-9D8A1A9371F3}|Management_of_Mossad_agents---API\\Management_of_Mossad_agents---API.csproj|solutionrelative:management_of_mossad_agents---api\\models\\agent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B36562AA-C88F-4591-A9D0-9D8A1A9371F3}|Management_of_Mossad_agents---API\\Management_of_Mossad_agents---API.csproj|c:\\idf many repositories\\management_of_mossad_agents---api\\management_of_mossad_agents---api\\management_of_mossad_agents---api\\enums\\missionstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B36562AA-C88F-4591-A9D0-9D8A1A9371F3}|Management_of_Mossad_agents---API\\Management_of_Mossad_agents---API.csproj|solutionrelative:management_of_mossad_agents---api\\enums\\missionstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B36562AA-C88F-4591-A9D0-9D8A1A9371F3}|Management_of_Mossad_agents---API\\Management_of_Mossad_agents---API.csproj|c:\\idf many repositories\\management_of_mossad_agents---api\\management_of_mossad_agents---api\\management_of_mossad_agents---api\\dal\\managementofmossadagentsdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B36562AA-C88F-4591-A9D0-9D8A1A9371F3}|Management_of_Mossad_agents---API\\Management_of_Mossad_agents---API.csproj|solutionrelative:management_of_mossad_agents---api\\dal\\managementofmossadagentsdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -49,72 +33,59 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 223,
-          "SelectedChildIndex": 5,
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "AgentStatus.cs",
-              "DocumentMoniker": "C:\\IDF Many repositories\\Management_of_Mossad_agents---API\\Management_of_Mossad_agents---API\\Management_of_Mossad_agents---API\\Enums\\AgentStatus.cs",
-              "RelativeDocumentMoniker": "Management_of_Mossad_agents---API\\Enums\\AgentStatus.cs",
-              "ToolTip": "C:\\IDF Many repositories\\Management_of_Mossad_agents---API\\Management_of_Mossad_agents---API\\Management_of_Mossad_agents---API\\Enums\\AgentStatus.cs",
-              "RelativeToolTip": "Management_of_Mossad_agents---API\\Enums\\AgentStatus.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAfAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "Target.cs",
+              "DocumentMoniker": "C:\\IDF Many repositories\\Management_of_Mossad_agents---API\\Management_of_Mossad_agents---API\\Management_of_Mossad_agents---API\\Models\\Target.cs",
+              "RelativeDocumentMoniker": "Management_of_Mossad_agents---API\\Models\\Target.cs",
+              "ToolTip": "C:\\IDF Many repositories\\Management_of_Mossad_agents---API\\Management_of_Mossad_agents---API\\Management_of_Mossad_agents---API\\Models\\Target.cs",
+              "RelativeToolTip": "Management_of_Mossad_agents---API\\Models\\Target.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-21T11:33:10.196Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Agent.cs",
-              "DocumentMoniker": "C:\\IDF Many repositories\\Management_of_Mossad_agents---API\\Management_of_Mossad_agents---API\\Management_of_Mossad_agents---API\\Models\\Agent.cs",
-              "RelativeDocumentMoniker": "Management_of_Mossad_agents---API\\Models\\Agent.cs",
-              "ToolTip": "C:\\IDF Many repositories\\Management_of_Mossad_agents---API\\Management_of_Mossad_agents---API\\Management_of_Mossad_agents---API\\Models\\Agent.cs",
-              "RelativeToolTip": "Management_of_Mossad_agents---API\\Models\\Agent.cs",
-              "ViewState": "AgIAAAQAAAAAAAAAAAAvwA4AAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-21T10:33:45.956Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Location.cs",
-              "DocumentMoniker": "C:\\IDF Many repositories\\Management_of_Mossad_agents---API\\Management_of_Mossad_agents---API\\Management_of_Mossad_agents---API\\Models\\Location.cs",
-              "RelativeDocumentMoniker": "Management_of_Mossad_agents---API\\Models\\Location.cs",
-              "ToolTip": "C:\\IDF Many repositories\\Management_of_Mossad_agents---API\\Management_of_Mossad_agents---API\\Management_of_Mossad_agents---API\\Models\\Location.cs",
-              "RelativeToolTip": "Management_of_Mossad_agents---API\\Models\\Location.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-21T10:42:30.683Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Mission.cs",
-              "DocumentMoniker": "C:\\IDF Many repositories\\Management_of_Mossad_agents---API\\Management_of_Mossad_agents---API\\Management_of_Mossad_agents---API\\Models\\Mission.cs",
-              "RelativeDocumentMoniker": "Management_of_Mossad_agents---API\\Models\\Mission.cs",
-              "ToolTip": "C:\\IDF Many repositories\\Management_of_Mossad_agents---API\\Management_of_Mossad_agents---API\\Management_of_Mossad_agents---API\\Models\\Mission.cs",
-              "RelativeToolTip": "Management_of_Mossad_agents---API\\Models\\Mission.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAfAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-21T10:43:56.067Z",
+              "WhenOpened": "2024-08-22T06:45:53.827Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Target.cs",
-              "DocumentMoniker": "C:\\IDF Many repositories\\Management_of_Mossad_agents---API\\Management_of_Mossad_agents---API\\Management_of_Mossad_agents---API\\Models\\Target.cs",
-              "RelativeDocumentMoniker": "Management_of_Mossad_agents---API\\Models\\Target.cs",
-              "ToolTip": "C:\\IDF Many repositories\\Management_of_Mossad_agents---API\\Management_of_Mossad_agents---API\\Management_of_Mossad_agents---API\\Models\\Target.cs*",
-              "RelativeToolTip": "Management_of_Mossad_agents---API\\Models\\Target.cs*",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
+              "Title": "PositionUpdater.cs",
+              "DocumentMoniker": "C:\\IDF Many repositories\\Management_of_Mossad_agents---API\\Management_of_Mossad_agents---API\\Management_of_Mossad_agents---API\\Services\\PositionUpdater.cs",
+              "RelativeDocumentMoniker": "Management_of_Mossad_agents---API\\Services\\PositionUpdater.cs",
+              "ToolTip": "C:\\IDF Many repositories\\Management_of_Mossad_agents---API\\Management_of_Mossad_agents---API\\Management_of_Mossad_agents---API\\Services\\PositionUpdater.cs",
+              "RelativeToolTip": "Management_of_Mossad_agents---API\\Services\\PositionUpdater.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAUwBgAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-21T10:44:01.762Z",
+              "WhenOpened": "2024-08-22T07:44:13.925Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Location.cs",
+              "DocumentMoniker": "C:\\IDF Many repositories\\Management_of_Mossad_agents---API\\Management_of_Mossad_agents---API\\Management_of_Mossad_agents---API\\Models\\Location.cs",
+              "RelativeDocumentMoniker": "Management_of_Mossad_agents---API\\Models\\Location.cs",
+              "ToolTip": "C:\\IDF Many repositories\\Management_of_Mossad_agents---API\\Management_of_Mossad_agents---API\\Management_of_Mossad_agents---API\\Models\\Location.cs",
+              "RelativeToolTip": "Management_of_Mossad_agents---API\\Models\\Location.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-22T06:51:52.011Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ManagementOfMossadAgentsDbContext.cs",
+              "DocumentMoniker": "C:\\IDF Many repositories\\Management_of_Mossad_agents---API\\Management_of_Mossad_agents---API\\Management_of_Mossad_agents---API\\DAL\\ManagementOfMossadAgentsDbContext.cs",
+              "RelativeDocumentMoniker": "Management_of_Mossad_agents---API\\DAL\\ManagementOfMossadAgentsDbContext.cs",
+              "ToolTip": "C:\\IDF Many repositories\\Management_of_Mossad_agents---API\\Management_of_Mossad_agents---API\\Management_of_Mossad_agents---API\\DAL\\ManagementOfMossadAgentsDbContext.cs",
+              "RelativeToolTip": "Management_of_Mossad_agents---API\\DAL\\ManagementOfMossadAgentsDbContext.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-22T06:51:00.505Z",
               "EditorCaption": ""
             },
             {
@@ -125,61 +96,22 @@
               "RelativeDocumentMoniker": "Management_of_Mossad_agents---API\\Controllers\\TargetsController.cs",
               "ToolTip": "C:\\IDF Many repositories\\Management_of_Mossad_agents---API\\Management_of_Mossad_agents---API\\Management_of_Mossad_agents---API\\Controllers\\TargetsController.cs*",
               "RelativeToolTip": "Management_of_Mossad_agents---API\\Controllers\\TargetsController.cs*",
-              "ViewState": "AgIAACAAAAAAAAAAAAAqwDcAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAEAAAAAAAAAAAAAqwE4AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-21T12:38:20.362Z",
+              "WhenOpened": "2024-08-22T06:09:41.363Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "AgentsController.cs",
               "DocumentMoniker": "C:\\IDF Many repositories\\Management_of_Mossad_agents---API\\Management_of_Mossad_agents---API\\Management_of_Mossad_agents---API\\Controllers\\AgentsController.cs",
               "RelativeDocumentMoniker": "Management_of_Mossad_agents---API\\Controllers\\AgentsController.cs",
               "ToolTip": "C:\\IDF Many repositories\\Management_of_Mossad_agents---API\\Management_of_Mossad_agents---API\\Management_of_Mossad_agents---API\\Controllers\\AgentsController.cs",
               "RelativeToolTip": "Management_of_Mossad_agents---API\\Controllers\\AgentsController.cs",
-              "ViewState": "AgIAABsAAAAAAAAAAAAiwDUAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAADkAAAAAAAAAAAAqwEYAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-21T10:34:43.572Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "TargetStatus.cs",
-              "DocumentMoniker": "C:\\IDF Many repositories\\Management_of_Mossad_agents---API\\Management_of_Mossad_agents---API\\Management_of_Mossad_agents---API\\Enums\\TargetStatus.cs",
-              "RelativeDocumentMoniker": "Management_of_Mossad_agents---API\\Enums\\TargetStatus.cs",
-              "ToolTip": "C:\\IDF Many repositories\\Management_of_Mossad_agents---API\\Management_of_Mossad_agents---API\\Management_of_Mossad_agents---API\\Enums\\TargetStatus.cs",
-              "RelativeToolTip": "Management_of_Mossad_agents---API\\Enums\\TargetStatus.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAgAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-21T12:36:35.577Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "MissionStatus.cs",
-              "DocumentMoniker": "C:\\IDF Many repositories\\Management_of_Mossad_agents---API\\Management_of_Mossad_agents---API\\Management_of_Mossad_agents---API\\Enums\\MissionStatus.cs",
-              "RelativeDocumentMoniker": "Management_of_Mossad_agents---API\\Enums\\MissionStatus.cs",
-              "ToolTip": "C:\\IDF Many repositories\\Management_of_Mossad_agents---API\\Management_of_Mossad_agents---API\\Management_of_Mossad_agents---API\\Enums\\MissionStatus.cs",
-              "RelativeToolTip": "Management_of_Mossad_agents---API\\Enums\\MissionStatus.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-21T11:35:28.668Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "ManagementOfMossadAgentsDbContext.cs",
-              "DocumentMoniker": "C:\\IDF Many repositories\\Management_of_Mossad_agents---API\\Management_of_Mossad_agents---API\\Management_of_Mossad_agents---API\\DAL\\ManagementOfMossadAgentsDbContext.cs",
-              "RelativeDocumentMoniker": "Management_of_Mossad_agents---API\\DAL\\ManagementOfMossadAgentsDbContext.cs",
-              "ToolTip": "C:\\IDF Many repositories\\Management_of_Mossad_agents---API\\Management_of_Mossad_agents---API\\Management_of_Mossad_agents---API\\DAL\\ManagementOfMossadAgentsDbContext.cs",
-              "RelativeToolTip": "Management_of_Mossad_agents---API\\DAL\\ManagementOfMossadAgentsDbContext.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAyAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-21T10:37:06.773Z",
+              "WhenOpened": "2024-08-22T06:09:23.509Z",
               "EditorCaption": ""
             }
           ]

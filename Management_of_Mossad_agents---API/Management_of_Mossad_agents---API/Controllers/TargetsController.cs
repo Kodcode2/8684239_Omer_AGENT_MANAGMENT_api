@@ -3,8 +3,11 @@ using Management_of_Mossad_agents___API.Enums;
 using Management_of_Mossad_agents___API.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using System.Text;
+using System.Threading.Tasks;
+using Management_of_Mossad_agents___API.Services;
 
 namespace Management_of_Mossad_agents___API.Controllers
 {
@@ -19,37 +22,81 @@ namespace Management_of_Mossad_agents___API.Controllers
             _context = context;
         }
 
-        //יצירת מטרה
+        // יצירת מטרה 
         [HttpPost]
         [Produces("application/json")]
         [ProducesResponseType(StatusCodes.Status201Created)]
-        public IActionResult CreateTarget(Target target)
+        public async Task<IActionResult> CreateTargetAsync(Target target)
         {
             target.status = TargetStatus.Live;
-            _context.Targets.Add(target);
-            _context.SaveChanges();
+            await _context.Targets.AddAsync(target);
+            await _context.SaveChangesAsync();
             return StatusCode(
-            StatusCodes.Status201Created,
-            new { success = true, targetID = target.id }
+                StatusCodes.Status201Created,
+                new { success = true, targetID = target.id }
+            );
+        }
+
+        // הוספת מיקום למטרה לפי איי די 
+        [HttpPut("{id}/pin")]
+        [Produces("application/json")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<IActionResult> AddLocationForTargetByIdAsync(int id, Location location)
+        {
+            Target target = await _context.Targets.FirstOrDefaultAsync(t => t.id == id);
+            if (target == null)
+            {
+                return NotFound(new { success = false, message = "Target not found" });
+            }
+
+            target.location = location;
+            _context.Update(target);
+            await _context.SaveChangesAsync();
+            return Ok(new { target });
+        }
+
+
+        //קבלת כל המטרות
+        [HttpGet]
+        [Produces("application/json")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public IActionResult GetAllTargets()
+        {
+            return StatusCode(
+                StatusCodes.Status200OK,
+                new
+                {
+                    targets = _context.Targets.Include(t => t.location)?.ToList()
+                }
             );
         }
 
 
-        //הוספת מיקום למטרה לפי איי די
-        [HttpPut("{id}/pin")]
+        //הזזת המטרה לכיוון מסוים
+        [HttpPut("{id}/move")]
         [Produces("application/json")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public IActionResult AddLocationForTargetById(int id, Location location)
+        public async Task<IActionResult> MoveTargetByIdAsync(int id, [FromBody] Dictionary<string, string> moveData)
         {
-            Target target = _context.Targets.FirstOrDefault(t => t.id == id);
-            target.location = location;
-            _context.Update(target);
-            _context.SaveChanges();
-            return Ok(
-                new
+            Target target = await _context.Targets
+                                          .Include(t => t.location) 
+                                          .FirstOrDefaultAsync(t => t.id == id); 
+            if (target == null)
+            {
+                return NotFound(new { success = false, message = "Target not found" });
+            }
+            if (moveData.TryGetValue("direction", out string direction))
+            {
+                bool success = await PositionUpdater.UpdatePositionAsync(target, direction);
+                if (!success)
                 {
-                    target
-                });
+                    return BadRequest(new { success = false, message = "Invalid direction" });
+                }
+                _context.Update(target);
+                await _context.SaveChangesAsync();
+                return Ok(new { success = true, target });
+            }
+            return BadRequest(new { success = false, message = "Direction not provided" });
         }
     }
 }
