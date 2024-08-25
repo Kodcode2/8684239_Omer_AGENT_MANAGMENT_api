@@ -6,7 +6,11 @@ namespace Management_of_Mossad_agents___API.Models
     {
         [Key]
         public int Id { get; set; }
+
+        [Range(0, 1000)]
         public Double X { get; set; }
+
+        [Range(0, 1000)]
         public Double Y { get; set; }
     }
 }

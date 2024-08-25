@@ -8,14 +8,14 @@ namespace Management_of_Mossad_agents___API.Services
     {
         private static readonly Dictionary<string, (int dx, int dy)> DirectionUpdates = new Dictionary<string, (int dx, int dy)>
         {
-            { "nw", (-1, 1) },  
-            { "n", (0, 1) },   
-            { "ne", (1, -1) }, 
-            { "w", (-1, 0) },  
-            { "e", (1, 0) },   
-            { "sw", (-1, -1) }, 
-            { "s", (0, -1) },  
-            { "se", (1, 1) }   
+            { "nw", (-1, 1) },
+            { "n", (0, 1) },
+            { "ne", (1, -1) },
+            { "w", (-1, 0) },
+            { "e", (1, 0) },
+            { "sw", (-1, -1) },
+            { "s", (0, -1) },
+            { "se", (1, 1) }
         };
 
 
@@ -29,7 +29,7 @@ namespace Management_of_Mossad_agents___API.Services
                 return true;
             }
 
-            return false; 
+            return false;
         }
 
 

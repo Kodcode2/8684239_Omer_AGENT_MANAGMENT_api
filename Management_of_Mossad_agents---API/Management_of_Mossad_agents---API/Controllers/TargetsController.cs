@@ -11,7 +11,7 @@ using Management_of_Mossad_agents___API.Services;
 
 namespace Management_of_Mossad_agents___API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class TargetsController : ControllerBase
     {
@@ -34,7 +34,7 @@ namespace Management_of_Mossad_agents___API.Controllers
 
             return StatusCode(
                 StatusCodes.Status201Created,
-                new { success = true, targetID = target.id }
+                new { Id = target.id }
             );
         }
 
@@ -54,33 +54,47 @@ namespace Management_of_Mossad_agents___API.Controllers
             _context.Update(target);
             await _context.SaveChangesAsync();
 
-            //הפנייה לבדיקת יצירת משימה
-            List<Agent> agents = _context.Agents.Include(a => a.location).Where(a => a.status == AgentStatus.Dormant).ToList();
-            Mission mission = ProposalToMission.CheckByTarget(target, agents);
-            if (mission != null)
+
+
+            // הפנייה לבדיקת יצירת משימה
+            if (target.status == TargetStatus.Live)
             {
-                _context.Missions.Add(mission);
-                _context.SaveChanges();
+                List<Agent> agents = _context.Agents.Include(a => a.location).Where(a => a.status == AgentStatus.Dormant).ToList();
+                List<Mission> missions = await ProposalToMission.CheckByTargetAsync(target, agents, _context);
+                if (missions != null && missions.Count > 0)
+                {
+                    // הוספת המשימות החדשות לאחר מחיקת המשימות הכפולות אם קיימות
+                    _context.Missions.AddRange(missions);
+                    await _context.SaveChangesAsync();
+                }
             }
 
             return Ok(new { target });
         }
 
 
+
         //קבלת כל המטרות
         [HttpGet]
         [Produces("application/json")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public IActionResult GetAllTargets()
+        public async Task<IActionResult> GetAllTargets()
         {
+            var targets = await _context.Targets.Include(t => t.location).ToListAsync();
+
             return StatusCode(
                 StatusCodes.Status200OK,
                 new
                 {
-                    targets = _context.Targets.Include(t => t.location)?.ToList()
+                    targets = targets
                 }
             );
         }
+
+
+
+
+
 
 
         //הזזת המטרה לכיוון מסוים
@@ -90,8 +104,8 @@ namespace Management_of_Mossad_agents___API.Controllers
         public async Task<IActionResult> MoveTargetByIdAsync(int id, [FromBody] Dictionary<string, string> moveData)
         {
             Target target = await _context.Targets
-                                          .Include(t => t.location) 
-                                          .FirstOrDefaultAsync(t => t.id == id); 
+                                          .Include(t => t.location)
+                                          .FirstOrDefaultAsync(t => t.id == id);
             if (target == null)
             {
                 return NotFound(new { success = false, message = "Target not found" });
@@ -106,15 +120,19 @@ namespace Management_of_Mossad_agents___API.Controllers
                 _context.Update(target);
                 await _context.SaveChangesAsync();
 
-                //הפנייה לבדיקת יצירת משימה
-                List<Agent> agents = _context.Agents.Include(a => a.location).Where(a => a.status == AgentStatus.Dormant).ToList();
-                Mission mission = ProposalToMission.CheckByTarget(target, agents);
-                if (mission != null) 
-                { 
-                    _context.Missions.Add(mission);
-                    _context.SaveChanges();
-                }
 
+                // הפנייה לבדיקת יצירת משימה
+                if (target.status == TargetStatus.Live)
+                {
+                    List<Agent> agents = _context.Agents.Include(a => a.location).Where(a => a.status == AgentStatus.Dormant).ToList();
+                    List<Mission> missions = await ProposalToMission.CheckByTargetAsync(target, agents, _context);
+                    if (missions != null && missions.Count > 0)
+                    {
+                        // הוספת המשימות החדשות לאחר מחיקת המשימות הכפולות אם קיימות
+                        _context.Missions.AddRange(missions);
+                        await _context.SaveChangesAsync();
+                    }
+                }
 
                 return Ok(new { success = true, target });
             }

@@ -2,7 +2,7 @@
   {
     "ContainingType": "Management_of_Mossad_agents___API.Controllers.AgentsController",
     "Method": "CreateAgentAsync",
-    "RelativePath": "api/Agents",
+    "RelativePath": "Agents",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -24,7 +24,7 @@
   {
     "ContainingType": "Management_of_Mossad_agents___API.Controllers.AgentsController",
     "Method": "GetAllAgents",
-    "RelativePath": "api/Agents",
+    "RelativePath": "Agents",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -40,7 +40,7 @@
   {
     "ContainingType": "Management_of_Mossad_agents___API.Controllers.AgentsController",
     "Method": "MoveAgentByIdAsync",
-    "RelativePath": "api/Agents/{id}/move",
+    "RelativePath": "Agents/{id}/move",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -67,7 +67,7 @@
   {
     "ContainingType": "Management_of_Mossad_agents___API.Controllers.AgentsController",
     "Method": "AddLocationForAgentByIdAsync",
-    "RelativePath": "api/Agents/{id}/pin",
+    "RelativePath": "Agents/{id}/pin",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -92,9 +92,54 @@
     ]
   },
   {
+    "ContainingType": "Management_of_Mossad_agents___API.Controllers.MissionsController",
+    "Method": "AssignMissionAsync",
+    "RelativePath": "Missions/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 400
+      }
+    ]
+  },
+  {
+    "ContainingType": "Management_of_Mossad_agents___API.Controllers.MissionsController",
+    "Method": "PromotingAgentToTargetAsync",
+    "RelativePath": "Missions/update",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
     "ContainingType": "Management_of_Mossad_agents___API.Controllers.TargetsController",
     "Method": "CreateTargetAsync",
-    "RelativePath": "api/Targets",
+    "RelativePath": "Targets",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -116,7 +161,7 @@
   {
     "ContainingType": "Management_of_Mossad_agents___API.Controllers.TargetsController",
     "Method": "GetAllTargets",
-    "RelativePath": "api/Targets",
+    "RelativePath": "Targets",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -132,7 +177,7 @@
   {
     "ContainingType": "Management_of_Mossad_agents___API.Controllers.TargetsController",
     "Method": "MoveTargetByIdAsync",
-    "RelativePath": "api/Targets/{id}/move",
+    "RelativePath": "Targets/{id}/move",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -159,7 +204,7 @@
   {
     "ContainingType": "Management_of_Mossad_agents___API.Controllers.TargetsController",
     "Method": "AddLocationForTargetByIdAsync",
-    "RelativePath": "api/Targets/{id}/pin",
+    "RelativePath": "Targets/{id}/pin",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,

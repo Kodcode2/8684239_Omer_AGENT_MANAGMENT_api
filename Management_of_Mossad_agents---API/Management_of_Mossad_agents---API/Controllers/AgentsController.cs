@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Management_of_Mossad_agents___API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class AgentsController : ControllerBase
     {
@@ -34,7 +34,7 @@ namespace Management_of_Mossad_agents___API.Controllers
 
             return StatusCode(
                 StatusCodes.Status201Created,
-                new { success = true, agentID = agent.id }
+                new { Id = agent.id }
             );
         }
 
@@ -45,23 +45,26 @@ namespace Management_of_Mossad_agents___API.Controllers
         public async Task<IActionResult> AddLocationForAgentByIdAsync(int id, Location location)
         {
             Agent agent = await _context.Agents.FirstOrDefaultAsync(a => a.id == id);
-            if (agent == null)
+            if (agent == null && agent.status == AgentStatus.InActivity)
             {
-                return NotFound(new { success = false, message = "Agent not found" });
+                return NotFound(new { success = false, message = "Agent not found or in activity" });
             }
 
             agent.location = location;
             _context.Update(agent);
             await _context.SaveChangesAsync();
 
-            //הפנייה לבדיקת יצירת משימה
+            // הפנייה לבדיקת יצירת משימה
             List<Target> targets = _context.Targets.Include(t => t.location).Where(t => t.status == TargetStatus.Live).ToList();
-            Mission mission = ProposalToMission.CheckByAgent(agent, targets);
-            if (mission != null)
+            List<Mission> missions = await ProposalToMission.CheckByAgentAsync(agent, targets, _context);
+            if (missions != null && missions.Count > 0)
             {
-                _context.Missions.Add(mission);
-                _context.SaveChanges();
+                // הוספת המשימות החדשות לאחר מחיקת המשימות הכפולות אם קיימות
+                _context.Missions.AddRange(missions);
+                await _context.SaveChangesAsync();
             }
+
+
 
             return Ok(new { agent });
         }
@@ -71,16 +74,19 @@ namespace Management_of_Mossad_agents___API.Controllers
         [HttpGet]
         [Produces("application/json")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public IActionResult GetAllAgents()
+        public async Task<IActionResult> GetAllAgents()
         {
+            var agents = await _context.Agents.Include(a => a.location).ToListAsync();
+
             return StatusCode(
                 StatusCodes.Status200OK,
                 new
                 {
-                    agents = _context.Agents.Include(t => t.location)?.ToList()
+                    agents = agents
                 }
             );
         }
+
 
 
 
@@ -97,28 +103,33 @@ namespace Management_of_Mossad_agents___API.Controllers
             {
                 return NotFound(new { success = false, message = "Agent not found" });
             }
-            if (moveData.TryGetValue("direction", out string direction))
+            if (moveData.TryGetValue("direction", out string direction) && agent.status == AgentStatus.Dormant)
             {
                 bool success = await PositionUpdater.UpdatePositionAgentAsync(agent, direction);
                 if (!success)
                 {
-                    return BadRequest(new { success = false, message = "Invalid direction" });
+                    return BadRequest(new { success = false, message = "Invalid direction or agent in activity" });
                 }
                 _context.Update(agent);
                 await _context.SaveChangesAsync();
 
-                //הפנייה לבדיקת יצירת משימה
+                // הפנייה לבדיקת יצירת משימה
                 List<Target> targets = _context.Targets.Include(t => t.location).Where(t => t.status == TargetStatus.Live).ToList();
-                Mission mission = ProposalToMission.CheckByAgent(agent, targets);
-                if (mission != null)
+                List<Mission> missions = await ProposalToMission.CheckByAgentAsync(agent, targets, _context);
+                if (missions != null && missions.Count > 0)
                 {
-                    _context.Missions.Add(mission);
-                    _context.SaveChanges();
+                    // הוספת המשימות החדשות לאחר מחיקת המשימות הכפולות אם קיימות
+                    _context.Missions.AddRange(missions);
+                    await _context.SaveChangesAsync();
                 }
+
+
 
                 return Ok(new { success = true, agent });
             }
             return BadRequest(new { success = false, message = "Direction not provided" });
         }
+
+
     }
 }

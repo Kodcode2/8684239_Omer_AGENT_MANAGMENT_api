@@ -1,73 +1,118 @@
 ﻿using Management_of_Mossad_agents___API.DAL;
 using Management_of_Mossad_agents___API.Enums;
 using Management_of_Mossad_agents___API.Models;
-using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.Blazor;
-using System.Reflection;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace Management_of_Mossad_agents___API.Services
 {
     public class ProposalToMission
     {
-        
+        // פונקציה שמקבלת סוכן ורשימה של מטרות
+        public static async Task<List<Mission>> CheckByAgentAsync(Agent agent, List<Target> listTargets, ManagementOfMossadAgentsDbContext context)
+        {
+            List<Mission> missions = new List<Mission>();
 
-        //פונקציה שמקבלת סוכן ורשימה של מטרות
-        public static Mission CheckByAgent(Agent agent, List<Target> listTargets) 
-        { 
             foreach (Target t in listTargets)
             {
-                Double distance = CheckDistance(t, agent);
-                if (distance < 200)
+                if (t.location != null)
                 {
-                    return CreateMission(t, agent, distance);
-                }
-             
-            }
-            return null;
+                    Double distance = CheckDistance(t, agent);
 
+                    if (distance < 200)
+                    {
+                        // בדיקה אם יש משימה כפולה, אם כן לא להוסיף חדשה
+                        bool isDuplicate = await CheckForDuplicateMissionsAsync(context, agent, t);
+                        if (!isDuplicate)
+                        {
+                            Mission newMission = CreateMission(t, agent);
+                            missions.Add(newMission);
+                        }
+                    }
+                    else
+                    {
+                        // אם המרחק גדול מ-200, למחוק משימה קיימת
+                        await RemoveExistingMissionAsync(context, agent, t);
+                    }
+                }
+            }
+
+            return missions.Count > 0 ? missions : null;
         }
 
-        //פונקציה שמקבלת מטרה ורשימה של סוכנים
-        public static Mission CheckByTarget(Target target, List<Agent> listAgents) 
+        // פונקציה שמקבלת מטרה ורשימה של סוכנים
+        public static async Task<List<Mission>> CheckByTargetAsync(Target target, List<Agent> listAgents, ManagementOfMossadAgentsDbContext context)
         {
+            List<Mission> missions = new List<Mission>();
+
             foreach (Agent a in listAgents)
             {
-                Double distance = CheckDistance(target, a);
-                if (distance < 200)
+                if (a.location != null)
                 {
-                    return CreateMission(target, a, distance);
+                    Double distance = CheckDistance(target, a);
+                    if (distance < 200)
+                    {
+                        // בדיקה אם יש משימה כפולה, אם כן לא להוסיף חדשה
+                        bool isDuplicate = await CheckForDuplicateMissionsAsync(context, a, target);
+                        if (!isDuplicate)
+                        {
+                            Mission newMission = CreateMission(target, a);
+                            missions.Add(newMission);
+                        }
+                    }
+                    else
+                    {
+                        // אם המרחק גדול מ-200, למחוק משימה קיימת
+                        await RemoveExistingMissionAsync(context, a, target);
+                    }
                 }
             }
-            return null;
+
+            return missions.Count > 0 ? missions : null;
         }
 
-        //פונקציה שבודקת מרחק
-        public static Double CheckDistance(Target target, Agent agent) 
+        // פונקציה שבודקת מרחק בין סוכן למטרה
+        public static Double CheckDistance(Target target, Agent agent)
         {
             Double distance = Math.Sqrt(Math.Pow(target.location.X - agent.location.X, 2) + Math.Pow(target.location.Y - agent.location.Y, 2));
             return distance;
         }
 
 
-        //פונקציה שיוצרת זמן של משימה
-        public static Double CalculateLeftTime(Double distance)
-        {
-            Double leftTime = distance / 5;
-            return leftTime;
-        }
 
-        //פונקציה שיוצרת משימה תקבל 3 פרמטרים
-        public static Mission CreateMission(Target target, Agent agent, Double distance)
+        // פונקציה שיוצרת משימה ומקבלת 3 פרמטרים
+        public static Mission CreateMission(Target target, Agent agent)
         {
             Mission mission = new Mission();
-            mission.AgentID = agent;
-            mission.TargetID = target;
-            mission.TimeLeft = CalculateLeftTime(distance);
+            mission.agentid = agent;
+            mission.targetid = target;
             mission.status = MissionStatus.Proposal;
             return mission;
-
         }
 
+        // פונקציה שבודקת אם יש כבר משימה כפולה עם אותו סוכן ואותה מטרה
+        public static async Task<bool> CheckForDuplicateMissionsAsync(ManagementOfMossadAgentsDbContext context, Agent agent, Target target)
+        {
+            // חיפוש משימה קיימת עם אותו סוכן ואותה מטרה
+            var existingMission = await context.Missions
+                .FirstOrDefaultAsync(m => m.agentid.id == agent.id && m.targetid.id == target.id);
+
+            // אם נמצאה משימה כפולה, תחזיר אמת
+            return existingMission != null;
+        }
+
+        // פונקציה שמוחקת משימה קיימת אם המרחק גדול מ-200
+        public static async Task RemoveExistingMissionAsync(ManagementOfMossadAgentsDbContext context, Agent agent, Target target)
+        {
+            // חיפוש משימה קיימת עם אותו סוכן ואותה מטרה
+            var existingMission = await context.Missions
+                .FirstOrDefaultAsync(m => m.agentid.id == agent.id && m.targetid.id == target.id);
+
+            // אם נמצאה משימה קיימת, יש למחוק אותה
+            if (existingMission != null)
+            {
+                context.Missions.Remove(existingMission);
+                await context.SaveChangesAsync();
+            }
+        }
     }
 }
