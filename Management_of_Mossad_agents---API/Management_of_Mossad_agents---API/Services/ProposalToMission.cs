@@ -20,7 +20,7 @@ namespace Management_of_Mossad_agents___API.Services
 
                     if (distance < 200)
                     {
-                        // בדיקה אם יש משימה כפולה, אם כן לא להוסיף חדשה
+                        // בדיקה אם יש משימה כפולה אם כן לא להוסיף חדשה
                         bool isDuplicate = await CheckForDuplicateMissionsAsync(context, agent, t);
                         if (!isDuplicate)
                         {
@@ -30,7 +30,7 @@ namespace Management_of_Mossad_agents___API.Services
                     }
                     else
                     {
-                        // אם המרחק גדול מ-200, למחוק משימה קיימת
+                        // אם המרחק גדול מ200 למחוק משימה קיימת
                         await RemoveExistingMissionAsync(context, agent, t);
                     }
                 }
@@ -51,7 +51,7 @@ namespace Management_of_Mossad_agents___API.Services
                     Double distance = CheckDistance(target, a);
                     if (distance < 200)
                     {
-                        // בדיקה אם יש משימה כפולה, אם כן לא להוסיף חדשה
+                        // בדיקה אם יש משימה כפולה אם כן לא להוסיף חדשה
                         bool isDuplicate = await CheckForDuplicateMissionsAsync(context, a, target);
                         if (!isDuplicate)
                         {
@@ -61,7 +61,7 @@ namespace Management_of_Mossad_agents___API.Services
                     }
                     else
                     {
-                        // אם המרחק גדול מ-200, למחוק משימה קיימת
+                        // אם המרחק גדול מ 200 למחוק משימה קיימת
                         await RemoveExistingMissionAsync(context, a, target);
                     }
                 }
@@ -79,7 +79,7 @@ namespace Management_of_Mossad_agents___API.Services
 
 
 
-        // פונקציה שיוצרת משימה ומקבלת 3 פרמטרים
+        // פונקציה שיוצרת משימה 
         public static Mission CreateMission(Target target, Agent agent)
         {
             Mission mission = new Mission();
@@ -92,22 +92,21 @@ namespace Management_of_Mossad_agents___API.Services
         // פונקציה שבודקת אם יש כבר משימה כפולה עם אותו סוכן ואותה מטרה
         public static async Task<bool> CheckForDuplicateMissionsAsync(ManagementOfMossadAgentsDbContext context, Agent agent, Target target)
         {
-            // חיפוש משימה קיימת עם אותו סוכן ואותה מטרה
             var existingMission = await context.Missions
-                .FirstOrDefaultAsync(m => m.agentid.id == agent.id && m.targetid.id == target.id);
+                .FirstOrDefaultAsync(m => m.agentid.id == agent.id && m.targetid.id == target.id );
 
-            // אם נמצאה משימה כפולה, תחזיר אמת
+            // אם נמצאה משימה כפולה תחזיר טרו
             return existingMission != null;
         }
 
-        // פונקציה שמוחקת משימה קיימת אם המרחק גדול מ-200
+
+
+        // פונקציה שמוחקת משימה קיימת אם המרחק גדול מ 200
         public static async Task RemoveExistingMissionAsync(ManagementOfMossadAgentsDbContext context, Agent agent, Target target)
         {
-            // חיפוש משימה קיימת עם אותו סוכן ואותה מטרה
             var existingMission = await context.Missions
                 .FirstOrDefaultAsync(m => m.agentid.id == agent.id && m.targetid.id == target.id);
 
-            // אם נמצאה משימה קיימת, יש למחוק אותה
             if (existingMission != null)
             {
                 context.Missions.Remove(existingMission);

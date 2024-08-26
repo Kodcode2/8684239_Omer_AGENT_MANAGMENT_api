@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Management_of_Mossad_agents---API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+809df2ded7bb61eb547ecce65549ec3c86a999f5")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+36430791f42e64985cc898248739508b9def4ecb")]
 [assembly: System.Reflection.AssemblyProductAttribute("Management_of_Mossad_agents---API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Management_of_Mossad_agents---API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -122,6 +122,22 @@
   },
   {
     "ContainingType": "Management_of_Mossad_agents___API.Controllers.MissionsController",
+    "Method": "GetAllMissionsProposalWithDetails",
+    "RelativePath": "Missions/proposal",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Management_of_Mossad_agents___API.Controllers.MissionsController",
     "Method": "PromotingAgentToTargetAsync",
     "RelativePath": "Missions/update",
     "HttpMethod": "POST",
@@ -227,5 +243,15 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "Management_of_Mossad_agents___API.Controllers.ViewController",
+    "Method": "GetOverview",
+    "RelativePath": "View/overview",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
   }
 ]

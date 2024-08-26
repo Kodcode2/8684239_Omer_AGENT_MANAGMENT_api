@@ -49,6 +49,10 @@ namespace Management_of_Mossad_agents___API.Controllers
             {
                 return NotFound(new { success = false, message = "Target not found" });
             }
+            else if (location.X < 0 || location.Y < 0 || location.X > 1000 || location.Y > 1000)
+            {
+                return BadRequest("Out of range coordinates");
+            }
 
             target.location = location;
             _context.Update(target);
@@ -57,13 +61,15 @@ namespace Management_of_Mossad_agents___API.Controllers
 
 
             // הפנייה לבדיקת יצירת משימה
-            if (target.status == TargetStatus.Live)
+
+            //if (target.status != TargetStatus.Eliminated)
+                if (target.status == TargetStatus.Live)
             {
                 List<Agent> agents = _context.Agents.Include(a => a.location).Where(a => a.status == AgentStatus.Dormant).ToList();
                 List<Mission> missions = await ProposalToMission.CheckByTargetAsync(target, agents, _context);
                 if (missions != null && missions.Count > 0)
                 {
-                    // הוספת המשימות החדשות לאחר מחיקת המשימות הכפולות אם קיימות
+                    // הוספת המשימות החדשות 
                     _context.Missions.AddRange(missions);
                     await _context.SaveChangesAsync();
                 }
@@ -103,9 +109,7 @@ namespace Management_of_Mossad_agents___API.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> MoveTargetByIdAsync(int id, [FromBody] Dictionary<string, string> moveData)
         {
-            Target target = await _context.Targets
-                                          .Include(t => t.location)
-                                          .FirstOrDefaultAsync(t => t.id == id);
+            Target target = await _context.Targets.Include(t => t.location).FirstOrDefaultAsync(t => t.id == id);
             if (target == null)
             {
                 return NotFound(new { success = false, message = "Target not found" });
@@ -122,13 +126,15 @@ namespace Management_of_Mossad_agents___API.Controllers
 
 
                 // הפנייה לבדיקת יצירת משימה
+
+                //if (target.status != TargetStatus.Eliminated)
                 if (target.status == TargetStatus.Live)
                 {
                     List<Agent> agents = _context.Agents.Include(a => a.location).Where(a => a.status == AgentStatus.Dormant).ToList();
                     List<Mission> missions = await ProposalToMission.CheckByTargetAsync(target, agents, _context);
                     if (missions != null && missions.Count > 0)
                     {
-                        // הוספת המשימות החדשות לאחר מחיקת המשימות הכפולות אם קיימות
+                        // הוספת המשימות החדשות 
                         _context.Missions.AddRange(missions);
                         await _context.SaveChangesAsync();
                     }

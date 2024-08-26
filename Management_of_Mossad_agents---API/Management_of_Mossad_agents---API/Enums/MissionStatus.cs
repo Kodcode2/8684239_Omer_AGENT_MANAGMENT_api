@@ -5,7 +5,6 @@
     {
         Proposal,
         AssignForTheMission,
-        ChaseUnderway,
         Ended
     }
 

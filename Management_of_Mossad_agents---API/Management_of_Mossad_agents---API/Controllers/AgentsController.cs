@@ -49,7 +49,10 @@ namespace Management_of_Mossad_agents___API.Controllers
             {
                 return NotFound(new { success = false, message = "Agent not found or in activity" });
             }
-
+            else if (location.X < 0 || location.Y < 0 || location.X > 1000 || location.Y > 1000)
+            {
+                return BadRequest("Out of range coordinates");
+            }
             agent.location = location;
             _context.Update(agent);
             await _context.SaveChangesAsync();
@@ -59,7 +62,7 @@ namespace Management_of_Mossad_agents___API.Controllers
             List<Mission> missions = await ProposalToMission.CheckByAgentAsync(agent, targets, _context);
             if (missions != null && missions.Count > 0)
             {
-                // הוספת המשימות החדשות לאחר מחיקת המשימות הכפולות אם קיימות
+                // הוספת המשימות החדשות 
                 _context.Missions.AddRange(missions);
                 await _context.SaveChangesAsync();
             }
@@ -96,9 +99,7 @@ namespace Management_of_Mossad_agents___API.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> MoveAgentByIdAsync(int id, [FromBody] Dictionary<string, string> moveData)
         {
-            Agent agent = await _context.Agents
-                                          .Include(a => a.location)
-                                          .FirstOrDefaultAsync(a => a.id == id);
+            Agent agent = await _context.Agents.Include(a => a.location).FirstOrDefaultAsync(a => a.id == id);
             if (agent == null)
             {
                 return NotFound(new { success = false, message = "Agent not found" });
@@ -118,7 +119,7 @@ namespace Management_of_Mossad_agents___API.Controllers
                 List<Mission> missions = await ProposalToMission.CheckByAgentAsync(agent, targets, _context);
                 if (missions != null && missions.Count > 0)
                 {
-                    // הוספת המשימות החדשות לאחר מחיקת המשימות הכפולות אם קיימות
+                    // הוספת המשימות החדשות 
                     _context.Missions.AddRange(missions);
                     await _context.SaveChangesAsync();
                 }
