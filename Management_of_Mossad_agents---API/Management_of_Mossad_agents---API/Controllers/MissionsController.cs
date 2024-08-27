@@ -103,9 +103,9 @@ namespace Management_of_Mossad_agents___API.Controllers
             // בדיקה אם הסוכן הגיע למטרה
             if (ax == target.location.X && ay == target.location.Y)
             {
-                target.status = TargetStatus.Eliminated; // עדכון סטטוס המטרה כחוסלה
-                mission.status = MissionStatus.Ended; // עדכון סטטוס המשימה כהושלמה
-                agent.status = AgentStatus.Dormant; // הסוכן סיים את המשימה
+                target.status = TargetStatus.Eliminated; 
+                mission.status = MissionStatus.Ended; 
+                agent.status = AgentStatus.Dormant; 
                 await _context.SaveChangesAsync();
             }
         }
