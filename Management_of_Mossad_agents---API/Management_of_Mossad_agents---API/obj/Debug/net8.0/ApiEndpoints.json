@@ -122,6 +122,35 @@
   },
   {
     "ContainingType": "Management_of_Mossad_agents___API.Controllers.MissionsController",
+    "Method": "GetMissionDetails",
+    "RelativePath": "Missions/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 404
+      }
+    ]
+  },
+  {
+    "ContainingType": "Management_of_Mossad_agents___API.Controllers.MissionsController",
     "Method": "GetAllMissionsProposalWithDetails",
     "RelativePath": "Missions/proposal",
     "HttpMethod": "GET",

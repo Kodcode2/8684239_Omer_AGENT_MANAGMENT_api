@@ -81,14 +81,48 @@ namespace Management_of_Mossad_agents___API.Controllers
         {
             var agents = await _context.Agents.Include(a => a.location).ToListAsync();
 
+            var detailedAgents = new List<object>();
+
+            foreach (var agent in agents)
+            {
+                var activeMission = await _context.Missions
+                    .Where(m => m.agentid.id == agent.id && m.status == MissionStatus.AssignForTheMission)
+                    .FirstOrDefaultAsync();
+
+                double? timeToEliminate = null;
+
+                if (activeMission != null)
+                {
+                    timeToEliminate = activeMission.timeLeft;
+                }
+
+                // חישוב כמות חיסולים
+                var eliminationsCount = await _context.Missions
+                    .Where(m => m.agentid.id == agent.id && m.status == MissionStatus.Ended && m.targetid.status == TargetStatus.Eliminated)
+                    .CountAsync();
+
+                detailedAgents.Add(new
+                {
+                    AgentId = agent.id,
+                    AgentName = agent.nickname,
+                    Location = new { X = agent.location?.X, Y = agent.location?.Y },
+                    Status = agent.status,
+                    PhotoUrl = agent.photoUrl,
+                    MissionId = activeMission?.id,
+                    TimeToEliminate = timeToEliminate,
+                    EliminationsCount = eliminationsCount
+                });
+            }
+
             return StatusCode(
                 StatusCodes.Status200OK,
                 new
                 {
-                    agents = agents
+                    agents = detailedAgents
                 }
             );
         }
+
 
 
 

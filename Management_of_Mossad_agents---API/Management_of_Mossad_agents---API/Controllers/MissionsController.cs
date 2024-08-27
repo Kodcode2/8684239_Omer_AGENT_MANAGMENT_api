@@ -241,6 +241,41 @@ namespace Management_of_Mossad_agents___API.Controllers
                     missions = detailedMissions
                 }
             );
+
+
+
+
+        }
+
+
+        // קבלת משימה לפי איי די
+
+        [HttpGet("{id}")]
+        [Produces("application/json")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> GetMissionDetails(int id)
+        {
+            var mission = await _context.Missions
+                .Include(m => m.agentid)
+                .Include(m => m.targetid)
+                .FirstOrDefaultAsync(m => m.id == id);
+
+            if (mission == null)
+            {
+                return NotFound(new { error = "המשימה לא נמצאה" });
+            }
+
+            return Ok(new
+            {
+                MissionId = mission.id,
+                AgentId = mission.agentid.id,
+                AgentName = mission.agentid.nickname,
+                TargetId = mission.targetid.id,
+                TargetName = mission.targetid.name,
+                Status = mission.status,
+                TimeLeft = mission.timeLeft
+            });
         }
     }
 }

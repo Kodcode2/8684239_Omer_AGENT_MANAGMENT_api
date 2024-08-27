@@ -24,12 +24,20 @@ namespace Management_of_Mossad_agents___API.Services
         {
             if (DirectionUpdates.TryGetValue(direction, out (int dx, int dy) update))
             {
-                target.location.X += update.dx;
-                target.location.Y += update.dy;
-                return true;
+                if ((target.location.X + update.dx <= 1000 && target.location.X + update.dx >= 0)
+                    && (target.location.Y + update.dy <= 1000 && target.location.Y + update.dy >= 0))
+                {
+                    target.location.X += update.dx;
+                    target.location.Y += update.dy;
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
-
             return false;
+
         }
 
 
@@ -38,12 +46,21 @@ namespace Management_of_Mossad_agents___API.Services
         {
             if (DirectionUpdates.TryGetValue(direction, out (int dx, int dy) update))
             {
-                agent.location.X += update.dx;
-                agent.location.Y += update.dy;
-                return true;
+                if ((agent.location.X + update.dx <= 1000 && agent.location.X + update.dx >= 0)
+                    && (agent.location.Y + update.dy <= 1000 && agent.location.Y + update.dy >= 0))
+                {
+                    agent.location.X += update.dx;
+                    agent.location.Y += update.dy;
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
 
             return false;
+
         }
     }
 }

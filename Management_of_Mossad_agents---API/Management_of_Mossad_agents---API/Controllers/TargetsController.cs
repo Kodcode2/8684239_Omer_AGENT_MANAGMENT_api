@@ -119,7 +119,7 @@ namespace Management_of_Mossad_agents___API.Controllers
                 bool success = await PositionUpdater.UpdatePositionTargetAsync(target, direction);
                 if (!success)
                 {
-                    return BadRequest(new { success = false, message = "Invalid direction" });
+                    return BadRequest(new { success = false, message = "Invalid direction or the range goes out of bounds of the matrix" });
                 }
                 _context.Update(target);
                 await _context.SaveChangesAsync();
